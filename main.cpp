@@ -118,7 +118,7 @@ public:
 
 RISCVSimulator::RISCVSimulator()
 {
-    instructionMemory.resize(512, 0); // 2KB / 4 bytes = 512 words
+    instructionMemory.resize(512, 0);
     dataMemory.resize(512, 0);
     reset();
 }
@@ -825,7 +825,6 @@ int main()
     cout << "   RISC-V 5-Stage Pipeline Simulator\n";
     cout << "========================================\n\n";
 
-    // Load program
     string filename;
     cout << "Enter the machine code file name: ";
     cin >> filename;
@@ -833,7 +832,6 @@ int main()
     simulator.loadProgram(filename);
     cout << "Program loaded successfully!\n\n";
 
-    // Select mode
     int mode;
     cout << "Select execution mode:\n";
     cout << "1. Instruction Mode (step through instructions)\n";
@@ -853,7 +851,6 @@ int main()
         {
             if (mode == 1)
             {
-                // Instruction mode - run cycles until one more instruction completes
                 int instructionsBefore = simulator.getInstructionsCompleted();
                 while (simulator.getInstructionsCompleted() == instructionsBefore && !simulator.isProgramComplete())
                 {
@@ -863,7 +860,6 @@ int main()
             }
             else
             {
-                // Cycle mode
                 simulator.runCycle();
                 simulator.displayState();
             }
@@ -871,7 +867,6 @@ int main()
 
         if (!simulator.isProgramComplete())
         {
-            // Interactive menu
             char choice;
             cout << "\n+=======================================================+\n";
             cout << "|                    OPTIONS MENU                       |\n";
